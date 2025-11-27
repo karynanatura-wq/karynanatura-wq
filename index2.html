@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<title>Medical Help</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: #fff;
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .main-btn {
+        background: red;
+        color: white;
+        font-size: 24px;
+        padding: 20px 40px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        position: relative;
+        animation: glow 1s infinite alternate;
+    }
+
+    @keyframes glow {
+        from { box-shadow: 0 0 5px red; }
+        to { box-shadow: 0 0 20px red; }
+    }
+
+    .gray-box {
+        background: #ccc;
+        padding: 20px;
+        border-radius: 10px;
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+
+    .option-btn {
+        background: red;
+        color: white;
+        font-size: 20px;
+        padding: 15px 30px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        margin: 10px;
+        animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(1); opacity: 1; }
+        50% { transform: scale(0.95); opacity: 0.8; }
+        100% { transform: scale(1); opacity: 1; }
+    }
+
+    #final-box {
+        background: #ccc;
+        padding: 25px;
+        border-radius: 10px;
+        font-size: 24px;
+    }
+
+    #blue-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: blue;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        font-size: 80px;
+        color: white;
+    }
+
+    .pulse-circle {
+        width: 150px;
+        height: 150px;
+        background: white;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        animation: circlePulse 1.5s infinite;
+    }
+
+    @keyframes circlePulse {
+        0% { opacity: 1; }
+        50% { opacity: 0.6; }
+        100% { opacity: 1; }
+    }
+
+</style>
+</head>
+<body>
+
+<button id="mainButton" class="main-btn">NEED MEDICAL HELP</button>
+
+<div id="questionBox" class="hidden">
+    <div class="gray-box">Which kind of help do you need?</div>
+    <button class="option-btn" id="adviseBtn">Advise</button>
+    <button class="option-btn" id="prescriptionBtn">Prescription</button>
+    <button class="option-btn" id="ambulanceBtn">Ambulance</button>
+</div>
+
+<div id="finalMessage" class="hidden">
+    <div id="final-box">An ambulance is on the way! Please wait from 5 to 10 minutes.</div>
+</div>
+
+<div id="blue-screen">
+    <div class="pulse-circle">🚑</div>
+</div>
+
+<script>
+    const mainBtn = document.getElementById('mainButton');
+    const questionBox = document.getElementById('questionBox');
+    const ambulanceBtn = document.getElementById('ambulanceBtn');
+    const finalMessage = document.getElementById('finalMessage');
+    const blueScreen = document.getElementById('blue-screen');
+
+    mainBtn.addEventListener('click', () => {
+        mainBtn.classList.add('hidden');
+        questionBox.classList.remove('hidden');
+    });
+
+    ambulanceBtn.addEventListener('click', () => {
+        questionBox.classList.add('hidden');
+        finalMessage.classList.remove('hidden');
+
+        finalMessage.addEventListener('click', () => {
+            finalMessage.classList.add('hidden');
+            blueScreen.style.display = 'flex';
+        }, { once: true });
+    });
+</script>
+
+</body>
+</html>
