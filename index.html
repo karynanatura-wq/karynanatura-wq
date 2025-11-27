@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Medical Help</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #f2f2f2;
+        }
+        .center {
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+        }
+        .red-btn {
+            background: red;
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-size: 20px;
+            width: 100%;
+            cursor: pointer;
+        }
+        .gray-box {
+            background: #ddd;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 18px;
+            color: #000;
+        }
+        .option-btn {
+            background: red;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 18px;
+            width: 100%;
+            margin: 8px 0;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="center" id="mainContent">
+        <button class="red-btn" id="helpBtn">NEED MEDICAL HELP</button>
+    </div>
+
+    <script>
+        const helpBtn = document.getElementById('helpBtn');
+        const main = document.getElementById('mainContent');
+
+        helpBtn.addEventListener('click', () => {
+            main.innerHTML = `
+                <div class='gray-box'>Which king of help do you need?</div>
+                <button class='option-btn' id='adviseBtn'>Advise</button>
+                <button class='option-btn' id='prescriptionBtn'>Prescription</button>
+                <button class='option-btn' id='ambulanceBtn'>Ambulance</button>
+            `;
+
+            document.getElementById('ambulanceBtn').addEventListener('click', () => {
+                main.innerHTML = `
+                    <div class='gray-box'>An ambulance is on the way! Please wait from 5 to 10 minutes.</div>
+                `;
+            });
+        });
+    </script>
+</body>
+</html>
